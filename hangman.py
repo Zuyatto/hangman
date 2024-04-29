@@ -15,14 +15,13 @@ def hangman(word):
     rletters = list(word)
     board = ["__"] * len(word)
     win = False
-    print("Welcome to Hangman")
+    print("ハングマンへようこそ！")
     while wrong < len(stages) - 1:
         print("\n")
-        msg = "Guess a letter"
+        msg = "1文字予想してね"
         char = input(msg)
         if char in rletters:
-            cind = rletters \
-                   .index(char)
+            cind = rletters.index(char)
             board[cind] = char
             rletters[cind] = '$'
         else:
@@ -32,15 +31,12 @@ def hangman(word):
         print("\n"
               .join(stages[0: e]))
         if "__" not in board:
-            print("You win!")
+            print("あなたの勝ち！")
             print(" ".join(board))
             win = True
             break
     if not win:
-        print("\n"
-              .join(stages[0: \
-              wrong]))
-        print("You lose! It was {}."
-              .format(word))
+        print("\n".join(stages[0:wrong+1]))
+        print("あなたの負け！正解は {}.".format(word))
 
 hangman("cat")
